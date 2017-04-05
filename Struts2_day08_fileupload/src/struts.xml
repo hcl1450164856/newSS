@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="default" extends="struts-default">
+		<interceptors>
+			<interceptor-stack name="atguigustack">
+				<interceptor-ref name="defaultStack">
+					<param name="fileUpload.maximumSize">2000</param>
+					<param name="fileUpload.allowedTypes">text/html,text/xml</param>
+					<param name="fileUpload.allowedExtensions">txt,html,dtd,xml</param>
+				</interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<!-- 使用设定的拦截器栈 -->
+		<!-- <default-interceptor-ref name="atguigustack"></default-interceptor-ref> -->
+	
+		<action name="testUp" class="cn.struts.upload.no1.MyFile">
+			<result>/fileUp.jsp</result>
+			<result name="input">/fileUp.jsp</result>
+		</action>
+		
+		<action name="testUpOne" class="cn.struts.upload.no1.FileUploadAction">
+			<result>/fileUp.jsp</result>
+			<result name="input">/fileUp.jsp</result>
+		</action>
+		
+		
+		
+		<action name="testDownload" class="cn.struts.upload.no2.DownloadAction">
+			<result type="stream">
+				<param name="bufferSize">2048</param>
+			
+			</result>
+		
+		</action>
+	</package>
+	
+</struts>
